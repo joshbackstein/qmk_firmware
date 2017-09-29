@@ -32,11 +32,12 @@ enum custom_keycodes {
 // Layer names don't all need to be of the same length, obviously, and you can also skip them
 // entirely and just use numbers.
 #define _QWERTY 0
-#define _FN 1
-#define _LAYER_STOP 2
-#define _LAYERS 3
-#define _NAV 4
-#define _RESET 5
+#define _COLEMAK 1
+#define _FN 2
+#define _LAYER_STOP 3
+#define _LAYERS 4
+#define _NAV 5
+#define _RESET 6
 
 // Define default layer
 #define _DEFAULT _QWERTY
@@ -60,6 +61,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		{ TO(_LAYERS), KC_LBRC, KC_RBRC, KC_LGUI, KC_LSFT, KC_LCTL,    KC_ENT,     KC_SPC, KC_RSFT, MO(_FN), KC_PGUP, KC_PGDN, KC_LALT }
 },
 
+[_COLEMAK] = { // colemak - tarmak 1
+		{ KC_GRV,      KC_1,    KC_2,    KC_3,    KC_4,    KC_5,       KC_TRNS,    KC_6,   KC_7,    KC_8,    KC_9,    KC_0,    KC_MUTE },
+		{ KC_TAB,      KC_Q,    KC_W,    KC_J,    KC_R,    KC_T,       KC_TRNS,    KC_Y,   KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS },
+		{ MO(_FN),     KC_A,    KC_S,    KC_D,    KC_F,    KC_G,       KC_TRNS,    KC_H,   KC_N,    KC_E,    KC_L,    KC_SCLN, KC_QUOT },
+		{ KC_MINS,     KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,       KC_BSPC,    KC_K,   KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_EQL },
+		{ TO(_LAYERS), KC_LBRC, KC_RBRC, KC_LGUI, KC_LSFT, KC_LCTL,    KC_ENT,     KC_SPC, KC_RSFT, MO(_FN), KC_PGUP, KC_PGDN, KC_LALT }
+},
+
 [_FN] = {
 		{ KC_ESC,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_VOLD, KC_VOLU },
 		{ KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS },
@@ -77,11 +86,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 },
 
 [_LAYERS] = {
-		{ TO(_DEFAULT),  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS },
-		{ TO(_NAV),      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS },
-		{ KC_TRNS,       KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS },
-		{ MO(_RESET),    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    RG_LEFT,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS },
-		{ TO(_RESET),    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    RG_RGHT,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS }
+		{ TO(_DEFAULT),  KC_TRNS,     KC_TRNS, KC_TRNS,      KC_TRNS, KC_TRNS,    KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS },
+		{ TO(_NAV),      TO(_QWERTY), KC_TRNS, KC_TRNS,      KC_TRNS, KC_TRNS,    KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS },
+		{ KC_TRNS,       KC_TRNS,     KC_TRNS, KC_TRNS,      KC_TRNS, KC_TRNS,    KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS },
+		{ MO(_RESET),    KC_TRNS,     KC_TRNS, TO(_COLEMAK), KC_TRNS, KC_TRNS,    RG_LEFT,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS },
+		{ TO(_RESET),    KC_TRNS,     KC_TRNS, KC_TRNS,      KC_TRNS, KC_TRNS,    RG_RGHT,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS }
 },
 
 [_NAV] = {
